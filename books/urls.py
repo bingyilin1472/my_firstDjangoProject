@@ -5,9 +5,15 @@ from . import views
 #正規表達式很強大，因為他是以格式來判定你符合哪一個api
 #/35.55與555A，就可以對應到不同的API
 #若不符合該re則完全不會有動作
+#re數字能比較豐富，相對int converter
 urlpatterns = [
     path('hello/', views.hello, name='hello'),
     path('myview/', views.MyView.as_view, name='myview'),
-    re_path('^id/(?P<book_id>[a-zA-Z0-9]{4})/$', views.show_book_id, name='bookid'), #以分組名稱作為變數帶入後面的大小為四的字串
-    re_path('^(?P<price>\d+\.\d+)/$', views.show_book_price, name='bookprice') #以分組名稱作為變數帶入一個浮點數，作為價格
+    re_path('^show_book_id/(?P<book_id>[a-zA-Z0-9]{4})/$', views.show_book_id, name='show_book_id'),
+    path('show_book_uuid/<uuid:book_uuid>/', views.show_book_uuid, name='show_book_uuid'),
+    re_path('^show_book_price/(?P<price>\d+\.\d+)/$', views.show_book_price, name='show_book_price'),
+    path('show_path/<path:path_name>/', views.show_path, name='show_path'),
+    path('helloslug/<str:name>/', views.helloslug, name='hello_slug'),
+    path('hello_google/', views.hello_google, name='hello_google'),
+    re_path('^price_warning/(?P<price>\d+\.\d+)/$', views.price_warning, name='price_warning')
 ]

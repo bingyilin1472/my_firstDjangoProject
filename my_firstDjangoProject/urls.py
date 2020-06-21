@@ -21,5 +21,5 @@ from django.urls import path, include
 #多個apps，建立上Django有其優勢
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('books/', include('books.urls'))
+    path('books/', include('books.urls')) #利用這個可以利用urls對不同用app分層級
 ]
