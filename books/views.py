@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View  # 採用class-base view要繼承View物件
+from django.views.generic import RedirectView  # Redirect是在views中的通用generic module
 
 
 # Create your views here.
@@ -59,4 +60,20 @@ def show_book_price(request, price):
 
 def price_warning(request, price):
     s = '<h3>你圖書的價格高過: {0}</h3>'.format(price)
+    return HttpResponse(s)
+
+
+class MyRedirectView(RedirectView):
+    pattern_name = 'book_info'
+
+
+def show_book_info(request):
+    s = '''
+    <html>
+        <body>
+            <h3>書名: Python Introduction</h3>
+            <h3>作者: Dante</h3>
+        </body>
+    </html>
+    '''
     return HttpResponse(s)
